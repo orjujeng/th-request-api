@@ -1,0 +1,15 @@
+com\orjujeng\request\entity\FinishInfo.class
+com\orjujeng\request\service\RegisterService.class
+com\orjujeng\request\entity\ChangePendingRequestStatusVo.class
+com\orjujeng\request\controller\RegisterController.class
+com\orjujeng\request\config\RabbitMqConfig.class
+com\orjujeng\request\mapper\RequestInfoMapper.class
+com\orjujeng\request\utils\MailSendUtil.class
+com\orjujeng\request\entity\MailInfo.class
+com\orjujeng\request\entity\MemberInfo.class
+com\orjujeng\request\utils\Result.class
+com\orjujeng\request\ThRequestApiApplication.class
+com\orjujeng\request\utils\ResultCode.class
+com\orjujeng\request\mapper\MemberInfoMapper.class
+com\orjujeng\request\entity\RequestInfo.class
+com\orjujeng\request\service\impl\RegisterServiceImpl.class

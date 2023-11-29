@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.orjujeng.request.mapper.RequestInfoMapper">
+	<select id="checkRequestInfoStatus" parameterType="com.orjujeng.request.entity.RequestInfo" resultType="com.orjujeng.request.entity.RequestInfo">
+  		SELECT * FROM request_info
+  		<where>
+  		1=1
+  		<if test = "id!=null">
+  		 and id = ${id} 
+  		 </if>
+  		<if test = "accountNum!=null">
+  		 and account_num = #{accountNum} 
+  		</if>
+  		<if test = "memberId!=null">
+		 and member_id = #{memberId}
+		</if>
+		<if test = "requestType!=null">
+		 and request_type = #{requestType}
+		</if>
+		<if test = "requestStatus!=null">
+		 and request_status = #{requestStatus}
+		</if>
+		</where>
+ 	</select>
+ 	<insert id="addRequestInfo" parameterType="com.orjujeng.request.entity.RequestInfo" useGeneratedKeys="true">
+ 		insert into request_info (account_num,member_id,name,request_type,request_date,request_status) 
+ 		values(#{accountNum},#{memberId},#{memberName},#{requestType},sysdate(),#{requestStatus})
+ 	</insert>
+ 	
+ 	<select id="getRequestInfoList" parameterType="String" resultType="com.orjujeng.request.entity.RequestInfo">
+  		SELECT * FROM request_info
+  		<where>
+  		1=1
+		<if test = "requestStatus!=null">
+		 and request_status = #{status}
+		</if>
+		</where>
+		order by request_date desc;
+ 	</select>
+ 	
+ 	<update id="updateRequestInfo" parameterType="String">
+ 		update request_info set request_status =#{status} 
+ 		where id =#{requestId} 
+ 	</update>
+ 	
+ 	<select id="getMailInfoBySeqId" parameterType="String" resultType="com.orjujeng.request.entity.MailInfo">
+  		SELECT mi.email_address,mi.name_zh,tid.start_date,tid.end_date,tid.except_finish_date,tid.bank_holiday_date 
+  		FROM TIMESHEET_API.timesheet_info_detail AS tid
+		LEFT JOIN PROFILE_API.member_info AS mi
+		ON tid.member_id = mi.id
+		WHERE tid.seq_id=#{seqId}
+ 	</select>
+ 	<select id="getFinishInfoBySeqId" parameterType="String" resultType="com.orjujeng.request.entity.FinishInfo">
+ 	SELECT mi.id,mi.email_address,mi.name_zh,tid.start_date,tid.end_date,tid.bank_holiday_days,tid.act_work_days,tid.`annual_leaving_days`,tid.`sick_leaving_days`,tid.`bank_holiday_date`,bi.project_code,bi.proportion
+	FROM TIMESHEET_API.timesheet_info_detail AS tid
+	LEFT JOIN PROFILE_API.member_info AS mi
+	ON tid.member_id = mi.id
+	LEFT JOIN PROFILE_API.binding_info AS bi
+	ON bi.member_id = mi.id
+	WHERE tid.seq_id =#{seqId}
+	ORDER BY ID DESC
+ 	</select>
+	
+</mapper>	
