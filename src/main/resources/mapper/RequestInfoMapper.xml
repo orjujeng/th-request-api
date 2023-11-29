@@ -25,7 +25,7 @@
 		</where>
  	</select>
  	<insert id="addRequestInfo" parameterType="com.orjujeng.request.entity.RequestInfo" useGeneratedKeys="true">
- 		insert into request_info (account_num,member_id,name,request_type,request_date,request_status) 
+ 		insert into request_info (account_num,member_id,member_name,request_type,request_date,request_status) 
  		values(#{accountNum},#{memberId},#{memberName},#{requestType},sysdate(),#{requestStatus})
  	</insert>
  	
