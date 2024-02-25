@@ -8,7 +8,7 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 
 
 @SpringBootApplication
-@EnableDiscoveryClient
+//@EnableDiscoveryClient
 @EnableRabbit
 @MapperScan("com.orjujeng.request.mapper")
 public class ThRequestApiApplication {

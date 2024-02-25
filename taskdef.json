@@ -1,0 +1,27 @@
+{
+  "containerDefinitions": [
+    {
+      "name": "th-request-api",
+      "image": "public.ecr.aws/orjujeng/orjujeng_ecr_pubilc_repo:th-request-api",
+      "cpu": 256,
+      "memory": 256,
+      "portMappings": [
+        {
+          "containerPort": 8080,
+          "hostPort": 0,
+          "protocol": "tcp"
+        }
+      ],
+      "essential": true,
+      "environment": [],
+      "mountPoints": [],
+      "volumesFrom": []
+    }
+  ],
+  "family": "orjujeng-ecs-task-definition",
+  "taskRoleArn": "arn:aws:iam::877401119357:role/orjujeng_ecs_task_iam_role",
+  "executionRoleArn": "arn:aws:iam::877401119357:role/orjujeng_ecs_task_execution_role",
+  "networkMode": "bridge",
+  "cpu": "256",
+  "memory": "256"
+}
